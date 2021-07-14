@@ -1,0 +1,36 @@
+class Solution {
+    public List<String> commonChars(String[] words) {
+        List <String> results = new ArrayList<>();
+        if(words == null || words.length == 0){
+           return results;
+        }
+        
+        int [] maincount = new int [26];
+        for(int i = 0 ; i < words[0].length() ;i++){
+            maincount[words[0].charAt(i) - 'a']++;
+        }
+        
+        for(int i = 1 ; i < words.length ; i++){
+            int [] count = new int[26];
+            for(int j = 0 ; j < words[i].length() ; j++){
+                count[words[i].charAt(j) - 'a']++; 
+            }
+            
+            for(int ii = 0 ; ii < count.length ; ii++){
+              maincount[ii] =  Math.min(count[ii] , maincount[ii]);
+            }  
+        }
+        
+      for(char c = 'a' ; c <= 'z' ; c++){
+          if( maincount[c - 'a']  > 0 ){
+              int x = maincount[c - 'a'];
+              for(int i = 0 ; i < x ; i++){
+                results.add(c+"");  
+              }
+          }
+      } 
+        
+        
+        return results;
+    }
+}
