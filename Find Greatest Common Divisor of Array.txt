@@ -1,0 +1,25 @@
+class Solution {
+    public int findGCD(int[] nums) {
+      int max = nums[0];
+       int min = nums[0];
+        int count = 1;
+        
+        for(int i = 0; i < nums.length; i++){
+            if(max < nums[i])
+                max = nums[i];
+            
+            if(min > nums[i])
+                min = nums[i];
+        }
+        if (max % min == 0) {
+      count = min;
+    } else {
+
+      
+      for (int i = min / 2; i > 1; i--)
+        if (min % i == 0 && max % i == 0) return count = i;
+    }
+    return count;
+        
+    }
+}
